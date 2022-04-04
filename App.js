@@ -20,17 +20,23 @@ import {
   FlatList,
 } from 'react-native';
 import {useState} from 'react/cjs/react.development';
-import Home from './components/home';
-import Drawer from './components/drawer';
+import Home from './components/Home';
+import Drawer from './components/Drawer';
+import Router from './Router';
+
+const counterContext = React.createContext();
 
 const App = () => {
   const [text, setText] = useState();
   const data = [{title: 1}, {title: 2}, {title: 3}];
 
+  const [counter, setCounter] = React.useState(0);
+
   return (
     <>
-      <Drawer text="Hello" />
-      <Home />
+      <counterContext.Provider value={{counter, setCounter}}>
+        <Router />
+      </counterContext.Provider>
     </>
   );
 };
@@ -54,4 +60,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export {App, counterContext};
