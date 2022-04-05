@@ -139,13 +139,13 @@ export default function Todo() {
         <FlatList
           style={styles.todoItemContainer}
           data={todoList}
+          initialNumToRender={2}
           renderItem={({item}) => {
             return (
               <SwipeView
                 onSwipedLeft={() => deleteTodo(item.id)}
-                swipeToOpenPercent={50}
+                leftOpenValue={-100}
                 previewSwipeDemo={true}
-                leftOpenValue={100}
                 directionalDistanceChangeThreshold={20}
                 renderRightView={() => {
                   return (
