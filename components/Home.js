@@ -11,10 +11,8 @@ import {
 import {useSelector, useDispatch} from 'react-redux';
 
 const Home = ({navigation}) => {
-  const counter = useSelector(state => {
-    console.log('state', state);
-    return state;
-  });
+  const counter = useSelector(state => state);
+  console.log('🚀 ~ file: Home.js ~ line 15 ~ Home ~ counter', counter);
   const dispatch = useDispatch();
   const [showModal, setModal] = useState(false);
 

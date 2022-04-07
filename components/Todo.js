@@ -127,26 +127,32 @@ export default function Todo() {
             Create Todo
           </Icon.Button>
         </View>
-        {/* <Text style={styles.createButton}>Create</Text> */}
-        {/* </Pressable> */}
       </View>
       <View style={styles.todoListContainer}>
-        <Text style={styles.todoTitle}>Todo's</Text>
-        {/* {todoList.length === 0 && (
-          <Text>Your Todo's will be displayed here.</Text>
-        )} */}
-        {/* <ScrollView> */}
         <FlatList
+          ListHeaderComponent={
+            <Text style={styles.todoTitle}>Your Todo's</Text>
+          }
           style={styles.todoItemContainer}
           data={todoList}
           initialNumToRender={2}
+          updateCellsBatchingPeriod={5000}
+          // onRefresh={
+          //   <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          // }
+          ListEmptyComponent={
+            <Text>Todo List is Empty. Start by creating one.</Text>
+          }
           renderItem={({item}) => {
             return (
               <SwipeView
+                rightOpenValue={-340}
+                leftOpenValue={300}
+                swipeDuration={500}
+                swipeToOpenPercent={20}
                 onSwipedLeft={() => deleteTodo(item.id)}
-                leftOpenValue={-100}
                 previewSwipeDemo={true}
-                directionalDistanceChangeThreshold={20}
+                directionalDistanceChangeThreshold={50}
                 renderRightView={() => {
                   return (
                     <View

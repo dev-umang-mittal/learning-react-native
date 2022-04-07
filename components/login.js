@@ -2,6 +2,7 @@ import axios from 'axios';
 import md5 from 'md5';
 import React from 'react';
 import LoginScreen from 'react-native-login-screen';
+import {BACKEND_URL} from '@env';
 
 export default function Login({navigation}) {
   let loginDetails = {
@@ -11,7 +12,7 @@ export default function Login({navigation}) {
 
   const login = (email, password) => {
     axios
-      .post('http://127.0.0.1:8080/user/login', {
+      .post(`${BACKEND_URL}user/login`, {
         email,
         password: md5(password),
       })
