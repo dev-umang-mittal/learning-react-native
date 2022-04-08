@@ -14,6 +14,7 @@ import RNBootSplash from 'react-native-bootsplash';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import OtpReader from './components/OtpReader';
+import Products from './components/Products';
 
 const Drawer = createDrawerNavigator();
 
@@ -41,6 +42,7 @@ export default class Router extends Component {
             <Drawer.Screen name="Login" component={Login} />
             <Drawer.Screen name="Signup" component={SignUp} />
             <Drawer.Screen name="Posts" component={Posts} />
+            <Drawer.Screen name="Products" component={Products} />
             <Drawer.Screen name="OtpReader" component={OtpReader} />
           </Drawer.Navigator>
         </Provider>
