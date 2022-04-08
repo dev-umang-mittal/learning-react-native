@@ -12,6 +12,7 @@ import {
   TouchableWithoutFeedback,
   Dimensions,
   Alert,
+  Vibration,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SwipeView from 'react-native-swipeview';
@@ -72,7 +73,7 @@ export default function Todo() {
       marginVertical: 4,
     },
     todoItemText: {
-      fontSize: 20,
+      fontSize: 15,
       color: '#000',
       fontWeight: 'bold',
     },
@@ -99,6 +100,7 @@ export default function Todo() {
       return item.id !== id;
     });
     setTodoList(newList);
+    Vibration.vibrate([0, 300]);
     ToastAndroid.show('Deleted Successfully', ToastAndroid.SHORT);
   };
 
@@ -150,9 +152,11 @@ export default function Todo() {
                 leftOpenValue={300}
                 swipeDuration={500}
                 swipeToOpenPercent={20}
+                previewDuration={100}
+                previewOpenValue={-20}
                 onSwipedLeft={() => deleteTodo(item.id)}
                 previewSwipeDemo={true}
-                directionalDistanceChangeThreshold={50}
+                directionalDistanceChangeThreshold={1}
                 renderRightView={() => {
                   return (
                     <View
@@ -174,11 +178,13 @@ export default function Todo() {
                   return (
                     <View
                       style={{
+                        overflow: 'hidden',
                         flexDirection: 'row',
                         flex: 1,
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         paddingHorizontal: 10,
+                        padding: 15,
                         backgroundColor: '#fefefe',
                         borderWidth: 1,
                         borderColor: '#000',
